@@ -1,10 +1,17 @@
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route
+} from "react-router-dom";
 
+import Home from './pages/Home'
 function App() {
   return (
-    <div>
-      This is a chat application
-    </div>
+    <Router>
+      <Route exact path="/">
+        <Home />
+      </Route>
+    </Router>
   );
 }
 
