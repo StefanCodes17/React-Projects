@@ -1,0 +1,21 @@
+.outer__container{
+    display: flex;
+    width: fit-content;
+}
+
+.logo__container{
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.logo__text{
+    margin-left: 15px;
+    align-self: center;
+    color: white;
+}
+
+.logo__text > h1{
+    font-weight: 300;
+    font-size: 25px;
+}
+

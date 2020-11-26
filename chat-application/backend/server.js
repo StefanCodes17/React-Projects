@@ -18,14 +18,16 @@ const io = socketIo(server, {
 });
 
 const { validateUser } = require('./middleware/validate')
-io.on('connection', (socket) => {
+io.on('connection', (socket, id) => {
     console.log('Connected')
-    socket.on('createRoom', (data) => {
-        const { errors, name } = validateUser(data)
-        console.log(errors, name)
-    })
     socket.on('joinRoom', (data) => {
-        console.log('Joining room')
+        const { errors, user } = validateUser(data)
+        socket.emit('user', { errors, user })
+        if (user) {
+            socket.join(user.room)
+            socket.to(user.room).emit('msg', `${user.name} has joined the lobby`)
+            io.to(id).emit('msg', `${user.name}, welcome to the lobby`)
+        }
     })
 })
 

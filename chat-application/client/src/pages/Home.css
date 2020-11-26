@@ -1,0 +1,88 @@
+.main__page{
+    width: 100vw;
+    height: 100vh;
+    background-color: #364f6b;
+}
+
+header{
+    position: absolute;
+    background-color: #364f6b;
+    padding-bottom: 10px;
+}
+
+.header__logo{
+    width: 100vw;
+    padding: 10px 0px 0px 10px;
+}
+
+.header__logo > img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.main__form{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 80vh;
+    text-align: center;
+    background-color: white;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > h1{
+    color: #fc5185;
+}
+
+form > input{
+    margin-bottom: 15px;
+    min-width: 250px;
+    max-width: 450px;
+    padding: 10px 10px 5px 5px;
+    border: none;
+    background-color: #f0f0f0;
+}
+form > input:focus{
+    outline: none
+}
+
+form > input:placeholder{
+    color: white
+}
+
+form > button{
+    padding: 10px 15px;
+    background-color: #364f6b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+form > button:hover{
+    background-color: rgba(54, 79, 107, 0.95)
+}
+
+form > button:active{
+    opacity: 0.8;
+}
+
+form > button:focus{
+    outline: none;
+}
+
+.errors{
+    margin: 10px;
+}
+
+.error{
+    list-style: none;
+    color: red;
+}
