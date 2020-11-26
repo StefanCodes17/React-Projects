@@ -2,7 +2,7 @@ const rooms = []
 const users = []
 
 /* {name: 'Stefan', roomCode: 'THBYUH'} */
-const validateUser = ({ name, roomCode }) => {
+const validateUser = ({ name, roomCode, id }) => {
     let errors = []
     let user;
     userName = name.toLowerCase().trim()
@@ -15,8 +15,8 @@ const validateUser = ({ name, roomCode }) => {
     if (errors.length == 0) {
         const { res, roomExists } = validateRoom(userName, roomCode)
         if (res && res.length == 0) {
-            user = { name, room: roomExists }
-            users.push({ name: userName, room: roomExists })
+            user = { name, room: roomExists, id }
+            users.push({ name: userName, room: roomExists, id })
         } else {
             errors = [...errors, ...res]
         }
@@ -51,20 +51,34 @@ function addRoom(user, code) {
             }
         })
     }
-    console.log(rooms)
 }
 
-module.exports = { validateUser }
-//rooms.map(room => {
-// if (room.room === code) {
-//     room.users.push(user)
-// } else {
-//     let newRoom = {
-//         room: code,
-//         users: [],
-//         messages: []
-//     }
-//     newRoom.users.push(user)
-//     rooms.push(newRoom)
-// }
-// })
+function addMessageToRoom(code, message) {
+    rooms.map(room => {
+        if (room.room === code) {
+            room.messages.push(message)
+        }
+    })
+}
+
+function getMessagesFromRoom(code) {
+    let msgs = []
+    rooms.map(room => {
+        if (room.room === code) {
+            msgs = room.messages
+        }
+    })
+    return msgs
+}
+
+function getUser(id) {
+    let outputUser;
+    users.map(user => {
+        if (user.id === id) {
+            outputUser = user
+        }
+    })
+    return outputUser
+}
+
+module.exports = { validateUser, addMessageToRoom, getMessagesFromRoom, getUser }

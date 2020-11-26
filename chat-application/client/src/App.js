@@ -5,10 +5,11 @@ import {
 } from "react-router-dom";
 import socketIOClient from 'socket.io-client'
 
-const ENDPOINT = 'http://localhost:5000'
-const socket = socketIOClient(ENDPOINT);
 import Chat from './pages/Chat'
 import Home from './pages/Home'
+
+const ENDPOINT = 'http://localhost:5000'
+const socket = socketIOClient(ENDPOINT);
 function App() {
   return (
     <Router>

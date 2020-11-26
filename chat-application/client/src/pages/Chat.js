@@ -5,17 +5,14 @@ export default function Chat({ socket }) {
 
     useEffect(() => {
         socket.on('msg', (data) => {
-            console.log(data)
-            setMsgs([...msgs, data])
+            setMsgs(data)
         })
-        return () => {
-            setMsgs([])
-        }
     }, [])
     return (
         <div>
             <ul>
                 {msgs.map(msg => {
+                    console.log(msg)
                     return <li key="msg">{msg}</li>
                 })}
             </ul>

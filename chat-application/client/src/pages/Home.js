@@ -13,8 +13,13 @@ export default function Home({ socket }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        socket.emit('joinRoom', { name: name, roomCode: room })
-        history.push('/chat')
+        socket.emit('joinRoom', { name: name, roomCode: room, id: socket.id })
+        socket.on('user', (data) => {
+            setErrors(data.errors)
+            if (data.errors.length == 0) {
+                history.push(`/chat`)
+            }
+        });
     }
 
     const handleChange = (e) => {
@@ -31,12 +36,6 @@ export default function Home({ socket }) {
             setRoom(output)
         }
     }
-
-    useEffect(() => {
-        socket.on('user', (data) => {
-            setErrors(data.errors)
-        });
-    }, []);
 
     return (
         <div className="main__page">
