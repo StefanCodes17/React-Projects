@@ -1,0 +1,17 @@
+.outer__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user{
+    font-size: 12px;
+    margin-right: 5px;
+    color: rgba(11, 11, 11);
+}
+
+.text{
+    background-color: #fc5185;
+    padding: 10px 15px;
+    border-radius: 25px;
+}

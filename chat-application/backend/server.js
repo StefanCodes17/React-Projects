@@ -24,18 +24,30 @@ io.on('connection', (socket) => {
         const { errors, user } = validateUser(data)
         socket.emit('user', { errors, user })
         if (user) {
-            //MESSAGES HAVE TO INCLUDE USER ... ANYTHING ELSE ADMIN
+            socket.emit('hi', 'hi')
             socket.join(user.room)
-            addMessageToRoom(user.room, `${user.name} has joined the lobby`)
-            let msgs = getMessagesFromRoom(user.room)
-            socket.to(user.room).emit('msg', msgs)
+            socket.to(user.room).emit('hi', 'I have joined')
+            //addMessageToRoom(user, `${user.name} has joined the lobby`)
+            //let msgs = getMessagesFromRoom(user.room)
         }
     })
+    //socket.on('chatConnect', (user) => {
+    //let msgs = getMessagesFromRoom(user.room)
+    // console.log(msgs)
+    // socket.to(user.room).emit('initialMsg', msgs)
+    //});
+    //socket.on('sendMsg', ({ user, textMsg }) => {
+    //addMessageToRoom(user, textMsg)
+    // let msgs = getMessagesFromRoom(user.room)
+    // console.log(msgs)
+    //socket.to(user.room).emit('msg', msgs)
+    //})
     socket.on('disconnect', () => {
-        let dUser = getUser(socket.id)
-        dUser && addMessageToRoom(dUser.room, `${dUser.name} has disconnected`)
-        let msgs = dUser && getMessagesFromRoom(dUser.room)
-        dUser && socket.to(dUser.room).emit('msg', msgs)
+        console.log('disconnecting')
+        //let dUser = getUser(socket.id)
+        //dUser && addMessageToRoom(dUser, `${dUser.name} has disconnected`)
+        // let msgs = dUser && getMessagesFromRoom(dUser.room)
+        //dUser && socket.to(dUser.room).emit('msg', msgs)
     })
 })
 

@@ -1,21 +1,51 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { UserContext } from '../UserContext'
+import { useHistory } from 'react-router-dom'
+
+import Message from '../components/Message'
 
 export default function Chat({ socket }) {
+    const history = useHistory();
     const [msgs, setMsgs] = useState([])
+    const ctx = useContext(UserContext)
+    const [textMsg, setTextMsg] = useState('')
+
+    const handleText = (e) => {
+        setTextMsg(e.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        socket.emit('sendMsg', { user: ctx.user, textMsg })
+        setTextMsg('')
+    }
+
 
     useEffect(() => {
-        socket.on('msg', (data) => {
-            setMsgs(data)
+        if (ctx.user.id === '') {
+            history.push('/')
+            return;
+        }
+        socket.on('hi', (data) => {
+            console.log(data)
         })
+        //socket.emit('chatConnect', ctx.user)
+        //socket.on('initialMsg', (data) => {
+        // console.log(data)
+        // setMsgs(data)
+        //})
     }, [])
     return (
         <div>
             <ul>
                 {msgs.map(msg => {
-                    console.log(msg)
-                    return <li key="msg">{msg}</li>
+                    return <Message user={msg.user.name} key="msg" message={msg.text}></Message>
                 })}
             </ul>
-        </div>
+            <form onSubmit={handleSubmit}>
+                <input value={textMsg} type="text" name="message" onChange={handleText}></input>
+                <button type="submit">Enter message</button>
+            </form>
+        </div >
     )
 }

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router';
+import { UserContext } from '../UserContext'
 
 import Logo from '../components/Logo'
 import './Home.css'
@@ -10,13 +11,16 @@ export default function Home({ socket }) {
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
     const [errors, setErrors] = useState([])
+    let ctx = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        socket.emit('joinRoom', { name: name, roomCode: room, id: socket.id })
+        let user = { name: name, room: room, id: socket.id }
+        socket.emit('joinRoom', user)
         socket.on('user', (data) => {
             setErrors(data.errors)
             if (data.errors.length == 0) {
+                ctx.setUser(user)
                 history.push(`/chat`)
             }
         });

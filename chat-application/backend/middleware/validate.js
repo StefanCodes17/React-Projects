@@ -2,7 +2,7 @@ const rooms = []
 const users = []
 
 /* {name: 'Stefan', roomCode: 'THBYUH'} */
-const validateUser = ({ name, roomCode, id }) => {
+const validateUser = ({ name, room, id }) => {
     let errors = []
     let user;
     userName = name.toLowerCase().trim()
@@ -13,7 +13,7 @@ const validateUser = ({ name, roomCode, id }) => {
         }
     })
     if (errors.length == 0) {
-        const { res, roomExists } = validateRoom(userName, roomCode)
+        const { res, roomExists } = validateRoom(userName, room)
         if (res && res.length == 0) {
             user = { name, room: roomExists, id }
             users.push({ name: userName, room: roomExists, id })
@@ -53,10 +53,11 @@ function addRoom(user, code) {
     }
 }
 
-function addMessageToRoom(code, message) {
+function addMessageToRoom(user, message) {
+    let code = user.room
     rooms.map(room => {
         if (room.room === code) {
-            room.messages.push(message)
+            room.messages.push({ user, text: message })
         }
     })
 }
@@ -68,6 +69,7 @@ function getMessagesFromRoom(code) {
             msgs = room.messages
         }
     })
+    console.log(msgs)
     return msgs
 }
 
