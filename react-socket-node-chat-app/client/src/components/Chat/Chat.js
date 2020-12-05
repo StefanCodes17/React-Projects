@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
 
-import './Chat.css'
+import Infobar from '../Infobar/Infobar'
+import Messages from '../Messages/Messages'
 
+import './Chat.css'
 let socket;
 export default function Chat({ location }) {
     const [name, setName] = useState('')
@@ -45,11 +47,11 @@ export default function Chat({ location }) {
         }
     }
 
-    console.log(message, messages)
-
     return (
         <div>
             <div>
+                <Infobar room={room} />
+                <Messages name={name} messages={messages} />
                 <input
                     type="text"
                     value={message}
