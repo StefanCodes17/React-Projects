@@ -3,8 +3,6 @@ const featuredPosts = require('./mocks/featured')
 const fs = require('fs')
 const path = require('path')
 
-
-
 module.exports = {
     resolvers: {
         Query: {

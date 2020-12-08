@@ -9,25 +9,32 @@ function replaceAll(str, delimiter, replacement) {
 }
 
 fs.readdir(
-    path.resolve(__dirname, '../migrations'),
+    path.resolve(
+        __dirname,
+        '../migrations'
+    ),
     'utf-8',
     (err, files) => {
-        if (err) throw new Error(err)
+        if (err) { throw new Error(err) }
         return promise.each(files, (fileName) => {
             return new Promise((resolve, reject) => {
-                fs.readFile(path.resolve(
-                    __dirname,
-                    `../migration/${fileName}`
-                )),
+                fs.readFile(
+                    path.resolve(
+                        __dirname,
+                        `../migrations/${fileName}`
+                    ),
                     'utf-8',
                     (err, sql) => {
                         if (err) reject(err)
                         return knex.raw(replaceAll(sql, '{}', db))
-                            .then(resolve)
+                            .then((data) => resolve(data))
                     }
+                )
             })
         })
-            .then(() => console.log('Migrations have run succesfully'))
+            .then(() => {
+                console.log('Migrations have run succesfully')
+            })
             .catch(err => {
                 throw new Error(err)
             })

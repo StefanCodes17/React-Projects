@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "create-migration": "node ./database/actions/create-migration.js",
-    "run-migration": "noe ./database/actions/create-migration.js"
+    "run-migration": "node ./database/actions/run-migration.js"
   },
   "author": "Stefan Kolev",
   "license": "ISC",
