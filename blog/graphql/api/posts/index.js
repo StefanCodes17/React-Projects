@@ -3,14 +3,14 @@ const { errorHandler } = require('../utils')
 
 
 module.exports = {
-    getPost: async (id) => (
-        await db
+    getPost: async (id) => {
+        return await db
             .select('*')
             .from('blog_posts')
             .where({ id })
             .catch(errorHandler)
-    ),
-    getPosts: async (type, category_id) => {
+    },
+    getPosts: async (category_id, type) => {
         let qry = db.select(
             'blog_posts.id',
             'blog_posts.description',
@@ -29,27 +29,35 @@ module.exports = {
             .groupBy('blog_posts.id')
 
         qry = {
-            trending: () => qry
-                .select(db.raw('COUNT(blog_post_likes.author_id) as likes'))
-                .leftJoin('blog_post_likes', 'blog_post_likes.post_id', 'blog_posts.id')
-                .groupBy('blog_posts.id')
-                .orderBy('likes', 'desc')
-                .limit(5),
+            trending: () => {
+                return qry
+                    .select(db.raw('COUNT(blog_post_likes.author_id) as likes'))
+                    .leftJoin('blog_post_likes', 'blog_post_likes.post_id', 'blog_posts.id')
+                    .groupBy('blog_posts.id')
+                    .orderBy('likes', 'desc')
+                    .limit(5)
+            },
 
-            featured: () => qry
-                .whereIn('blog_posts.id', [1, 2, 3, 4]),
+            featured: () => {
+                return qry
+                    .whereIn('blog_posts.id', [1, 2, 3, 4])
+            },
 
-            recent: () => qry
-                .orderBY('updated_at', 'desc')
-                .limit(5),
+            recent: () => {
+                return qry
+                    .orderBY('updated_at', 'desc')
+                    .limit(5)
+            },
 
-            default: () => qry
-        }[type || 'default']
+            default: () => {
+                return qry
+            }
+        }[type || 'default']()
 
         return qry.then(data => {
             if (category_id) {
                 return data.filter(post => {
-                    post.cat_ids.split(',').includes(category_id.toString())
+                    return post.cat_ids.split(',').includes(category_id.toString())
                 })
             }
             return data
@@ -70,7 +78,7 @@ module.exports = {
             .catch(errorHandler),
 
     getPostAuthors: async (ids) => {
-        await db.select('*')
+        return await db.select('*')
             .from('users')
             .whereIn('id', ids)
             .catch(errorHandler)

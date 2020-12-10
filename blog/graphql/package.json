@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "test",
+    "devstart": "nodemon app.js",
     "create-migration": "node ./database/actions/create-migration.js",
     "run-migration": "node ./database/actions/run-migration.js"
   },
@@ -20,6 +21,7 @@
     "koa": "^2.13.0",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
-    "mysql2": "^2.2.5"
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.6"
   }
 }

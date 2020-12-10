@@ -39,7 +39,7 @@ module.exports = {
                 async ({ type }) => await PostService.getPosts(type)
             ),
             getPostsByCategory: getPostsWithAuthors(
-                async ({ category_id }) => await PostService.getPosts('default', category_id)
+                async ({ category_id }) => await PostService.getPosts(category_id)
             )
         }
     },

@@ -1,9 +1,3 @@
-# type Query{
-#     trendingPosts: [Post]!
-#     featuredPosts: [Post]!
-#     recentPosts: [Post]!
-# }
-
 type Query {
     getPostsByType(type: String): [Post]!
     getPostsByCategory(category_id: Int): [Post]!
