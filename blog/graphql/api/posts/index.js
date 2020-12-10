@@ -10,7 +10,7 @@ module.exports = {
             .where({ id })
             .catch(errorHandler)
     },
-    getPosts: async (category_id, type) => {
+    getPosts: async (type, category_id) => {
         let qry = db.select(
             'blog_posts.id',
             'blog_posts.description',
@@ -45,7 +45,7 @@ module.exports = {
 
             recent: () => {
                 return qry
-                    .orderBY('updated_at', 'desc')
+                    .orderBy('updated_at', 'desc')
                     .limit(5)
             },
 
@@ -77,10 +77,10 @@ module.exports = {
             .where('post_id', id)
             .catch(errorHandler),
 
-    getPostAuthors: async (ids) => {
-        return await db.select('*')
+    getPostAuthors: async (ids) =>
+        await db.select('*')
             .from('users')
             .whereIn('id', ids)
             .catch(errorHandler)
-    }
+
 }
