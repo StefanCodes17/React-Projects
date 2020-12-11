@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Home() {
+export default function Health() {
     return (
         <div>
-            Contact
+            Health
         </div>
     )
 }

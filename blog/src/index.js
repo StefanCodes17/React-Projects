@@ -1,14 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { ApolloClient } from 'apollo-client'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloProvider } from '@apollo/react-hooks'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './assets/scss/base.scss'
 
+const cache = new InMemoryCache()
+const client = new ApolloClient({
+  cache,
+  link: 'http://localhost:5000/graphql',
+})
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
