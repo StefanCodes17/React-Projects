@@ -14,13 +14,14 @@ export default function Algorithms({ history }) {
             cat_ids: catIds
         }
     })
-
+    console.log(data, error)
     if (error) {
+        console.log(error)
         return 'Something went wrong.'
     }
 
     return WidthTitle(
-        'Algorithsm',
+        'Algorithms',
         data?.posts ? <PostGrid post={data.posts} /> : 'Loading'
     )
 }
