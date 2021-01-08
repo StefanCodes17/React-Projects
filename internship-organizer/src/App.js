@@ -1,10 +1,15 @@
-import Card from './components/Card'
 
 import './App.css';
+
+import Organizer from './pages/Organizer';
+import Navbar from './components/Navbar'
 function App() {
   return (
     <div className="app">
-      <Card />
+      <Navbar />
+      <div className="web__container">
+        { /* <Organizer /> */}
+      </div>
     </div>
   );
 }

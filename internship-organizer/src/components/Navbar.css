@@ -1,0 +1,35 @@
+.navbar{
+    width: 100vw;
+    background-color: #322525;
+    padding: 20px 0px;
+    display: grid;
+    grid-template-columns: 2.5vw 300px 1fr auto 1fr 2.5vw;
+    align-items: center;
+}
+
+.nav__logo__container{
+    display: flex;
+    align-items: center;
+    grid-column: 2/3;
+    width: 100%;
+}
+
+.logo{
+    width: 20vw;
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+.nav__logo__container > h3{
+    color: white;
+    grid-column: 0 / 1;
+    font-size: 1.25rem;
+}
+
+.navbar__profile{
+    grid-column: 5/6;
+    justify-content: right;
+    width: fit-content;
+    color: white;
+    justify-self: right;
+}
