@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="233.434" height="392.755" viewBox="0 0 233.434 392.755">
+  <defs>
+    <filter id="greenSideBlurb" x="0" y="0" width="233.434" height="392.755" filterUnits="userSpaceOnUse">
+      <feOffset dx="-2" dy="6" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#greenSideBlurb)">
+    <path id="greenSideBlurb-2" data-name="greenSideBlurb" d="M129.434,158.582S-206.08,152.748-39.7,343.31s169.13,190.007,169.13,190.007Z" transform="translate(97 -155.56)" fill="#43c48c"/>
+  </g>
+</svg>

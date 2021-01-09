@@ -15,7 +15,7 @@ export default function () {
             </div>
             :
             <div>
-                <button>Sign up!</button>
+                <button className="nav__signup__btn">Sign up!</button>
             </div>
     }
 
@@ -23,7 +23,6 @@ export default function () {
         <div className="navbar">
             <div className="nav__logo__container">
                 <img className="logo" src={Logo}></img>
-                <h3>Internship Tracker</h3>
             </div>
             <div className="navbar__profile">
                 {renderProfile()}

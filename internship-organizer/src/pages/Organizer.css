@@ -1,5 +1,12 @@
 .organizer__container{
-    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: -1;
+    padding: 120px 0px 0px 25px;
+    background-color:#F3D3D3;
+    height: 100vh;
 }
 
 .card__outer__container{

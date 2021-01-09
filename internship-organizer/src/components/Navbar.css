@@ -3,7 +3,7 @@
     background-color: #322525;
     padding: 20px 0px;
     display: grid;
-    grid-template-columns: 2.5vw 300px 1fr auto 1fr 2.5vw;
+    grid-template-columns: 3vw 300px 1fr auto 1.5fr 3vw;
     align-items: center;
 }
 
@@ -16,7 +16,7 @@
 
 .logo{
     width: 20vw;
-    max-width: 100px;
+    max-width: 90px;
     margin-right: 10px;
 }
 
@@ -32,4 +32,16 @@
     width: fit-content;
     color: white;
     justify-self: right;
+}
+
+.nav__signup__btn{
+    background: transparent;
+    border: 1px solid #43C48C;
+    padding: 10px 25px;
+    color: white;
+    transition: background-color 0.3s ease-in; 
+}
+
+.nav__signup__btn:hover{
+    background:  #43C48C;
 }
