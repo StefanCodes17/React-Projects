@@ -44,4 +44,12 @@
 
 .nav__signup__btn:hover{
     background:  #43C48C;
+    cursor: pointer;
+}
+
+.modal__container{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background-color: white;
 }

@@ -1,12 +1,17 @@
+import { render } from '@testing-library/react'
 import React, { useState } from 'react'
 
+import { Link } from 'react-router-dom'
+
 import Logo from '../assets/Logo.svg'
+import FormModal from './FormModal'
 
 import './Navbar.css'
 
-export default function () {
+export default function Navbar() {
 
     const [loggedIn, setLoggedIn] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
 
     const renderProfile = () => {
         return loggedIn ?
@@ -15,18 +20,25 @@ export default function () {
             </div>
             :
             <div>
-                <button className="nav__signup__btn">Sign up!</button>
-            </div>
+                <button className="nav__signup__btn" onClick={() => setModalOpen(true)}>Sign up!</button>
+            </div >
+    }
+
+    const renderModal = () => {
+        return <FormModal hasBeenOpen={modalOpen} />
     }
 
     return (
         <div className="navbar">
             <div className="nav__logo__container">
-                <img className="logo" src={Logo}></img>
+                <Link to="/">
+                    <img className="logo" src={Logo} alt="Logo"></img>
+                </Link>
             </div>
             <div className="navbar__profile">
                 {renderProfile()}
             </div>
+            {modalOpen && renderModal()}
         </div>
     )
 }

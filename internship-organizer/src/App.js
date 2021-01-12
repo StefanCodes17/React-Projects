@@ -6,6 +6,8 @@ import Organizer from './pages/Organizer';
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 
+import FormModal from './components/FormModal'
+
 function App() {
   return (
     <div className="app">

@@ -4,13 +4,13 @@
     top: 0;
     left: 0;
     padding: 120px 0px 0px 0px;
-    height: 100vh;
     width: 100vw;
+    min-height: 100vh;
     z-index: -1;
     overflow: hidden;
 }
 
-
+/* Main content */
 
 .main__section__text{
     width: 50vw;
@@ -43,7 +43,49 @@
 
 .main__signup__btn:hover{
     animation: btnHover 0.5s linear;
+    cursor: pointer;
 }
+
+.main__steps{
+    width: 90vw;
+    margin: 250px auto 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* Step Styles */
+
+.step{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    max-width: 250px;
+    color: white;
+}
+
+.step__number{
+    font-size: 1.2rem;
+    border-radius: 50px;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+}
+
+.step__text{
+    text-align: center;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    font-size: 1rem;
+    color: white;
+    opacity: 0.9;
+    line-height: 1.5rem;
+}
+
+/* Background Circles */
 
 .dashedCircleI{
     position: absolute;
