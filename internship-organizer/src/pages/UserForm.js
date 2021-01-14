@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import OrganizerSVG from '../assets/organizerSVG.svg'
 import Logo from '../assets/Logo.svg'
@@ -7,33 +7,51 @@ import { Link } from 'react-router-dom'
 import './UserForm.css'
 
 
-const labels = {
-    'login': {
-        'primary_text': 'Welcome back!',
-        'secondary_text': 'Hope you land that position!',
-        'form__text': 'Login',
-        'button': 'Go to Organizer',
-        'fields': ['Email', 'Password'],
-        'changer': "Don't have an account?",
-        'changer__btn': 'Sign up'
-    },
-    'signup': {
-        'primary_text': 'Welcome!',
-        'secondary_text': 'Hope you organize to the fullest!',
-        'form__text': 'Sign Up!',
-        'button': 'Sign Up!',
-        'fields': ['Name', 'Password', 'Email', 'Confirm Password'],
-        'changer': "Already have an account?",
-        'changer__btn': 'Log in!'
-    }
-}
-
-const changer = ['signup', 'login']
-
-
 export default function UserForm() {
 
     const [type, setType] = useState('login') //The type of userform consists of login, signup, newsletter
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [conpassword, setConPassword] = useState('')
+
+    const labels = {
+        'login': {
+            'primary_text': 'Welcome back!',
+            'secondary_text': 'Hope you land that position!',
+            'form__text': 'Login',
+            'button': 'Go to Organizer',
+            'fields': ['Email', 'Password'],
+            'changer': "Don't have an account?",
+            'changer__btn': 'Sign up',
+            'onChange': {
+                'Email': setEmail,
+                'Password': setPassword,
+            }
+        },
+        'signup': {
+            'primary_text': 'Welcome!',
+            'secondary_text': 'Hope you organize to the fullest!',
+            'form__text': 'Sign Up!',
+            'button': 'Sign Up!',
+            'fields': ['Name', 'Email', 'Password', 'Confirm Password'],
+            'changer': "Already have an account?",
+            'changer__btn': 'Log in!',
+            'onChange': {
+                'Name': setName,
+                'Email': setEmail,
+                'Password': setPassword,
+                'Confirm Password': setConPassword
+            }
+        }
+    }
+
+    const changer = ['signup', 'login']
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(name, email, password, conpassword)
+    }
 
     return (
         <div className="form__container">
@@ -53,18 +71,18 @@ export default function UserForm() {
                     <img className="form__logo" src={Logo} alt="Internship Organizer" />
                     <h1>{labels[type].form__text}</h1>
                 </div>
-                <form className="user__form" id="user__form" action="submit" >
+                <form className="user__form" id="user__form" onSubmit={(e) => handleSubmit(e)} >
                     {labels[type].fields.map(field => {
                         return (
-                            <input className="form__input" type="text" placeholder={field} key={field}></input>
+                            <input className="form__input" type="text" placeholder={field} key={field} name={field.toLowerCase().replace(' ', '')} onChange={(e) => labels[type]['onChange'][field](e.target.value)}></input>
                         )
                     })}
+                    <button className="form__btn" type='submit'>{labels[type].button}</button>
                 </form>
-                <button className="form__btn">{labels[type].button}</button>
                 <div className="already__acc">
                     <p>{labels[type].changer} <span onClick={() => setType(changer[(changer.indexOf(type) + 1) % 2])}>{labels[type].changer__btn}</span></p>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

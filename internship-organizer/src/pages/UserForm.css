@@ -91,10 +91,6 @@
     margin: 5px;
 }
 
-.form__input:last-child{
-    margin-bottom: 25px;
-}
-
 .form__input::placeholder{
     color: white;
     font-size: 1rem
@@ -109,6 +105,7 @@
     font-size: 0.9rem;
     max-width: 190px;
     align-self: center;
+    margin-top: 10px;
 }
 
 .form__btn:hover{
