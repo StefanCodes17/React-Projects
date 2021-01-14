@@ -8,26 +8,30 @@ import Navbar from './components/Navbar'
 import UserForm from './pages/UserForm'
 import ErrorPage from './pages/ErrorPage'
 
+import { AuthProvider } from './context/AuthContext'
+
 function App() {
   return (
-    <div className="app">
-      <Switch>
-        <Route exact path='/'>
-          <Navbar />
-          <Home />
-        </Route>
-        <Route path='/user/signup'>
-          <UserForm />
-        </Route>
-        <Route path='/organizer/:id'>
-          <Navbar />
-          <Organizer />
-        </Route>
-        <Route>
-          <ErrorPage />
-        </Route>
-      </Switch>
-    </div>
+    <AuthProvider>
+      <div className="app">
+        <Switch>
+          <Route exact path='/'>
+            <Navbar />
+            <Home />
+          </Route>
+          <Route path='/user/signup'>
+            <UserForm />
+          </Route>
+          <Route path='/organizer/:id'>
+            <Navbar />
+            <Organizer />
+          </Route>
+          <Route>
+            <ErrorPage />
+          </Route>
+        </Switch>
+      </div>
+    </AuthProvider>
   );
 }
 

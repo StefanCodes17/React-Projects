@@ -77,8 +77,19 @@
 }
 
 .form__header__text{
+    text-align: center;
     margin-bottom: 20px;
     color: rgba(255, 255, 255,1)
+}
+
+.form__errors{
+    list-style-type: none;
+    align-self: center;
+    margin-top: 5px;
+}
+
+.form__errors > li{
+    color: #ff0033;
 }
 
 .form__input{

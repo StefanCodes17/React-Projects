@@ -4,8 +4,10 @@ import OrganizerSVG from '../assets/organizerSVG.svg'
 import Logo from '../assets/Logo.svg'
 
 import { Link } from 'react-router-dom'
-import './UserForm.css'
+import { useAuth } from '../context/AuthContext'
+import { validatePasswords } from '../hooks/validate'
 
+import './UserForm.css'
 
 export default function UserForm() {
 
@@ -14,6 +16,8 @@ export default function UserForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [conpassword, setConPassword] = useState('')
+    const [errors, setErrors] = useState([])
+    const { currentUser, signup } = useAuth()
 
     const labels = {
         'login': {
@@ -50,8 +54,22 @@ export default function UserForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(name, email, password, conpassword)
+        if (type == 'signup') {
+            let { errors } = validatePasswords(password, conpassword)
+            if (errors.length > 0) {
+                setErrors(errors)
+            } else {
+                signup(email, password)
+                    .catch(err => {
+                        setErrors([...errors, err.message])
+                    })
+            }
+        }
     }
+
+    useEffect(() => {
+        setErrors([])
+    }, [name, email, password, conpassword])
 
     return (
         <div className="form__container">
@@ -70,11 +88,17 @@ export default function UserForm() {
                 <div className="form__header__text">
                     <img className="form__logo" src={Logo} alt="Internship Organizer" />
                     <h1>{labels[type].form__text}</h1>
+                    <ul className="form__errors">
+                        {errors &&
+                            errors.map(error => {
+                                return <li key={error}>{error}</li>
+                            })}
+                    </ul>
                 </div>
                 <form className="user__form" id="user__form" onSubmit={(e) => handleSubmit(e)} >
                     {labels[type].fields.map(field => {
                         return (
-                            <input className="form__input" type="text" placeholder={field} key={field} name={field.toLowerCase().replace(' ', '')} onChange={(e) => labels[type]['onChange'][field](e.target.value)}></input>
+                            <input className="form__input" type={field === 'Password' || field === 'Confirm Password' ? "password" : "text"} placeholder={field} key={field} name={field.toLowerCase().replace(' ', '')} onChange={(e) => labels[type]['onChange'][field](e.target.value)} required></input>
                         )
                     })}
                     <button className="form__btn" type='submit'>{labels[type].button}</button>
