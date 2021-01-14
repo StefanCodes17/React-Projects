@@ -1,0 +1,158 @@
+.form__container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.side__info__container{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.inner__form__container{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+    flex-direction: column;
+    background-color:  #322525;
+}
+
+.side__text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.side__text > h1{    
+    color: #322525;
+    font-size: 45px;
+}
+
+.side__text > h3{
+    color: rgba(130, 130, 130, 1);
+    font-size: 1.3rem;
+}
+
+.side__info__button{
+    background-color: #43C48C;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.btn__container{
+    align-self: center;
+    margin-top: 10px;
+}
+
+.btn__container:hover{
+    animation: btnHover 0.5s linear;
+}
+
+.side__info__divider{
+    width: 75%;
+    height: 2px;
+    background-color: #322525;
+    margin: 25px auto;
+}
+
+.organizer__svg{
+    max-width: 550px;
+}
+
+.user__form{
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    min-width: 200px;
+    flex-direction: column;
+}
+
+.form__header__text{
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255,1)
+}
+
+.form__input{
+    background-color: rgba(111, 111, 111);
+    outline: none;
+    border: none;
+    padding: 5px 0px 5px 10px;
+    font-size: 1rem;
+    color: white;
+    margin: 5px;
+}
+
+.form__input:last-child{
+    margin-bottom: 25px;
+}
+
+.form__input::placeholder{
+    color: white;
+    font-size: 1rem
+}
+
+.form__btn{
+    background-color:#F3D3D3;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 25px;
+    color:  #322525;
+    font-size: 0.9rem;
+    max-width: 190px;
+    align-self: center;
+}
+
+.form__btn:hover{
+    animation: btnFormHover 1s linear;   
+    box-shadow: 3px 7px rgba(111, 111, 111); 
+}
+
+.already__acc{
+    display: flex;
+    align-items: flex-end;
+    position:absolute;
+    bottom: 10px;
+    right: 15px;
+    color: white
+}
+
+.already__acc > p > span{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes btnFormHover{
+    0%{
+        box-shadow: 0px 0px rgba(111, 111, 111) ;
+    }
+
+    50%{
+        box-shadow: 2px 6px rgba(111, 111, 111);
+    }
+    100%{
+        box-shadow: 3px 7px rgba(111, 111, 111);
+    }
+}
+
+@keyframes btnHover{
+    0%{
+        transform: rotate(20deg);
+    }
+
+    50%{
+        transform: rotate(-10deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}

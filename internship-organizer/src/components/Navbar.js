@@ -4,14 +4,12 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Logo from '../assets/Logo.svg'
-import FormModal from './FormModal'
 
 import './Navbar.css'
 
 export default function Navbar() {
 
     const [loggedIn, setLoggedIn] = useState(false)
-    const [modalOpen, setModalOpen] = useState(false)
 
     const renderProfile = () => {
         return loggedIn ?
@@ -20,12 +18,8 @@ export default function Navbar() {
             </div>
             :
             <div>
-                <button className="nav__signup__btn" onClick={() => setModalOpen(true)}>Sign up!</button>
+                <Link to="/user/signup"><button className="nav__signup__btn" >Sign up!</button></Link>
             </div >
-    }
-
-    const renderModal = () => {
-        return <FormModal hasBeenOpen={modalOpen} />
     }
 
     return (
@@ -38,7 +32,6 @@ export default function Navbar() {
             <div className="navbar__profile">
                 {renderProfile()}
             </div>
-            {modalOpen && renderModal()}
         </div>
     )
 }
