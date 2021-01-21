@@ -22,6 +22,6 @@ export default function Health() {
 
     return WidthTitle(
         'Health',
-        data?.posts ? <PostGrid post={data.posts} /> : 'Loading'
+        data?.posts ? <PostGrid posts={data.posts} /> : 'Loading'
     )
 }

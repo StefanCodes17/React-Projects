@@ -29,7 +29,7 @@ export default function PostGrid({ posts }) {
                 {paginatedPosts.map((post, index) => {
                     return <div className="post-container" key={index}>
                         <figure>
-                            <Link to={post.link}>
+                            <Link to={`./post-viewer/${post.id}`}>
                                 <img src={require(`../../assets/images/${post.image}`).default} alt={post.image}></img>
                             </Link>
                         </figure>

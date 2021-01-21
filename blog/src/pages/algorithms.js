@@ -5,7 +5,7 @@ import WidthTitle from '../components/common/with-title'
 import PostGrid from '../components/common/post-grid'
 import { GET_POSTS_BY_CATEGORIES_QUERY } from '../queries/posts'
 
-const catIds = [8]
+const catIds = [2]
 
 export default function Algorithms({ history }) {
 
@@ -14,7 +14,6 @@ export default function Algorithms({ history }) {
             cat_ids: catIds
         }
     })
-    console.log(data, error)
     if (error) {
         console.log(error)
         return 'Something went wrong.'
@@ -22,6 +21,8 @@ export default function Algorithms({ history }) {
 
     return WidthTitle(
         'Algorithms',
-        data?.posts ? <PostGrid post={data.posts} /> : 'Loading'
+        data?.posts
+            ? <PostGrid posts={data.posts} /> :
+            'Loading'
     )
 }

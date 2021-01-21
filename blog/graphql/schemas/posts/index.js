@@ -41,7 +41,8 @@ module.exports = {
             ),
             getPostsByCategories: getPostsWithAuthors(
                 async ({ cat_ids }) => await PostService.getPosts(undefined, cat_ids)
-            )
+            ),
+            getPost: async (parent, args, context, info) => await PostService.getPost(args.id)
         }
     },
     schema: fs.readFileSync(

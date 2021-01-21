@@ -14,7 +14,6 @@ export default function Cloud() {
             cat_ids: catIds
         }
     })
-    console.log(data, error)
     if (error) {
         console.log(error)
         return 'Something went wrong.'
@@ -22,6 +21,6 @@ export default function Cloud() {
 
     return WidthTitle(
         'Cloud',
-        data?.posts ? <PostGrid post={data.posts} /> : 'Loading'
+        data?.posts ? <PostGrid posts={data.posts} /> : 'Loading'
     )
 }

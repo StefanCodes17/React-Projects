@@ -10,6 +10,9 @@ module.exports = {
             .select('*')
             .from('blog_posts')
             .where({ id })
+            .andWhere(function () {
+                this.where('active', '=', 1)
+            })
             .catch(errorHandler)
     },
     getPosts: async (type, category_ids) => {
@@ -58,17 +61,15 @@ module.exports = {
 
         return qry.then(data => {
             if (category_ids) {
-                data.filter(post => {
-                    return post.cat_ids &&
-                        intersection(
-                            post.cat_ids
-                                .split(',')
-                                .map(parseInt),
-                            category_ids
-                        )
+                return data.filter(post => {
+                    return intersection(
+                        post.cat_ids
+                            .split(',')
+                            .map(int => parseInt(int)),
+                        category_ids
+                    ).length > 0
                 })
             }
-            return data
         }).catch(errorHandler)
     },
 

@@ -21,11 +21,15 @@ const navLinks = [
     },
     {
         title: 'Brain Hacking',
-        path: '/'
+        path: '/brainhacking'
     },
     {
         title: 'Login',
         path: '/login'
+    },
+    {
+        title: 'Post Viewer',
+        path: '/post-viewer'
     }
 ]
 

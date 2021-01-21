@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function WithTitle(title, component) {
+    console.log(component)
     return (
         <main className="home">
             <section className="container">
