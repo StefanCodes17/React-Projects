@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ProgressBar from './ProgressBar'
 
 export default function UploadForm() {
 
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState('');
     const [err, setErr] = useState('')
 
     const fileTypes = ['image/png', 'image/jpeg', 'image/jpg']
