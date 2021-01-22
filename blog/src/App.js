@@ -34,7 +34,7 @@ function App() {
           <Route path='/login' component={Login} />
           <Route path='/brainhacking' component={Brainhacking} />
           <Route path='/post-viewer/:id' component={PostViewer} />
-          <Route path='/webdev' component={WebDev} />
+          <Route path='/web-dev' component={WebDev} />
           {/* <Route path="/:page" component={PageRenderer} /> */}
           <Route path="/" render={() => <Redirect to="/home" />} />
           <Route component={() => 404} />
